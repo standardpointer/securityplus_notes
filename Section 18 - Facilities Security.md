@@ -1,0 +1,91 @@
+# 18.1 Fire Suppression
+- #### Handheld extinguishers
+	- **Fires are broken down into five classes**:
+		- **A**: oridinary combustibles (wood, paper, rubber, fabrics, and most plastics)
+		- **B**: Flammable liquids and gases (gasoline, oils, paint, lacquer, and tar)
+		- **C**: Fire involving live electrical equipment
+		- **D**: Combustible metals or combustible metal alloys
+		- **K**: Fire in cooking appliance that involves cookie media (vegetable or animals oils/fats)
+	- **ABC** extinguishers use dry chemicals to put out fires (avoid using this on computers)
+	- **BC** extinguishers (used on B and C fires), usually using CO<sub>2</sub> to put out fires.
+		- Ensure you're in a well ventilated or open area, because these extinguishers displace oxygen to do their job
+	- **Yellow** extinguishers are used for class D fires.
+- #### Wet/Dry Sprinklers
+	- **Wet pipes** are filled with water all the way to the sprinkler head and are just waiting for the bulb to be melted or broken
+	- **Dry pipes** are filled with pressurized air and only push water into the ippes when needed to combat fire
+	- **Pre-action** sprinkler systems will activate when heat or smoke is detected
+- Most server rooms use **clean agent systems**, which suppress fire b yreleasing HALON, FM-200, or CO<sub>2</sub> instead of water
+# 18.2 HVAC
+- Heating, Ventilation, and Air Conditioning
+- Most server rooms use HVAC systems along with internal fans to properly cool the components
+- Hot/Cool Aisles
+- HVACs also maintain proper humidity in rooms, too. High = condensation. Ideally, ~40%
+- HVACs are connected to **industrial control systems** (ICS) and **Supervisory Control and Data Acquisition** (SCADA) networks
+# 18.3 Shielding
+- **Shielded Twisted Pair**: (STP) adds a layer of shielding inside the cable
+- Shield HVAC systems to mitigate EMI.
+- **Faraday Cages**: Are shielding installed around an entire room that prevents electromagnetic energy and radio frequencies from entering or leaving the room
+- **TEMPEST**: U.S. government standards for the level of shielding required in a building to ensure emissions and interference cannot enter or exit
+	- These facilities are also resistant to EMPs
+# 18.4 Vehicular Vulnerabilities
+- Vehicles connect numerous subsystemsover a **controller area network** (CAN).
+	- A digital serial data communications network used within vehicles
+- The primary external interface is the Onboard Diagnostics (OBD-II) module
+	- In about all cars since the '90s
+- CANs ssumed that everyone in the car is trusted, so not much security
+- No concept of source addressing or message authentication in a CAN bus
+- To attack a car, you can 
+	- attach the exploit to OBD-II
+	- Explot over the onboard cellular/WiFi
+# 18.5 IoT Vulnerabilities
+- A group of objects (electronic or not) that are connected to the wider Interent by using embedded electronic components
+- Most "smart" devices use an embedded version of Linux or Android as their OS
+- Devices must be secured and updated when new vulnerabilities are found
+# 18.6 Embedded System Vulnerabilities
+- **Embedded systems** are a computer system that is designed to perform a specific, dedicated function
+- These systems are considered static environments where frequent changes are not made or allowed
+- They have very little support for identifying and mitigating security issues
+- **Programmable Logic Controller**: (PLC): is designed for deployment in an industrial or out door setting that can automate and monitor mechanical systems
+	- Can be patched and reprogrammed to solve vulnerabilities
+- **System-on-Chip**: (SOC) is a processor that integrates the platform functionality of multiple logical controllers onto a single chip
+	- These are power efficient and used with embedded systems
+- **Real-Time Operating System**: (RTOS) is a type of OS that prioritizes deterministic execution of operations to ensure concsistent response for time-critical tasks
+	- Embedded systems usually do not tolerate reboots/crashes and must have response times that are accurate to a microsecond
+- **Field Programmable Gate Array**: (FPGA) is a processor that can be programmed to perform a specific function by a customer rather than at the time of manufacturing
+	- End-user can configure the programming logic to run a specific application instead of using an ASIC (application-specific integrated circuit)
+# 18.7 ICS and SCADA Vulnerabilities
+- **Operational Technology**: (OT) is a communications network designed to implement an industrial control system rather than data networking
+- Industrial systems prioritize availability and integrity over confidentiality
+- #### ICS
+	- A network that manages embedded devices
+	- ICS is used for electrical power stations, water suppliers, health services, telecommunications, manufacturing, and defense needs
+	- **Fieldbus** is a digital serial data communications used in operational technology networks to link PLCs
+	- **Human-Machine Interface**: (HMI) is the input and output controls on a PLC to allow a user to configure and monitor the system
+	- Manages process automation by linking PLCs together using a fieldbus to make changes in the physical world
+	- **Data Historian**: is software that aggregates and catalogs data from multiple sources within an industrial control system
+- #### SCADA
+	- A type of industrial control system that manages large-scale, multiple-site devices and equipment spread over a region
+	- Typically runs as software on ordinary computers to gather data from and manage plant devices and equipments with PLCs
+- #### MODBUS
+	- A communications protocol used in operation technology networks
+	- Gives control servers and SCADA hosts the ability to query and change the configuration of each PLC
+# 18.8 Mitigating Vulnerabilities
+- Four key controls for mitigating vulnerabilities in specialized systems:
+	- 1: Establish administrative control over OT networks by recruiting staff with relevant expertise
+	- 2: Implement the minimum network links by disabling unnecesasry links, services, and protocols
+	- 3: Develop and test a patch maangement program for OT networks
+	- 4: Perform regular audits of logical and physical access to systems to detect possible vulnerabilities and intrusions
+- WARNING: Enumeration tools and vulnerability scanners can cause problems on OT networks
+	- Passive packet capturing
+# 18.9 Premise System Vulnerabilities
+- Many system designs allow the monitoring to be accessible from the company's network or even directly from the internet
+- **Building Automation System**: (BAS) components and protocols that facilitate the centralized configuration and monitoring of mechanical and electrical systems within offices and data centers
+- Vulnerabilities include
+	- Process and memory vulns in the PLC
+	- Plaintext credentials or keys in application code
+	- Code injection via web user interface
+- DoS conditions could be caused by affecting building automation systems like HVAC
+	- Infamous Target HVAC exploit
+- **Physical Access Control System**: (PACS) is components and protocols that facilitate the centralized configuration and monitoring of security mechanisms within offices and data centers
+	- Can either be implemented as part of a building automation system or as a separate system
+	- WARNING: PACs are often installed and maintained by an external supplier and are omitted from risk and vuln assessments by analysts

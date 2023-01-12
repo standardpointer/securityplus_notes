@@ -1,0 +1,75 @@
+# 17.1 Access Control Models
+- #### DAC
+	- Discretionary Access Control
+	- The access control policy is determined by the owner
+	- Every object in a system MUST have an owner
+	- Each owner determines access rights and permissions for each object
+- #### MAC
+	- Mandatory Access Control
+	- An access control policy where the computer system determines the access control for an object
+	- Relies on security labels being assigned to every user (subject) and every folder/file/device (object)
+	- Data labels create trust levels for all subjects/objects
+	- To access something, you need the "need-to-know" at a minimum
+	-**Rule-based Access Control**: Label-based access control that defines whether access should be granted or denied to objects by comparing the object label and the subject label
+	- **Lattice-based** Access Control uses complex maths to create sets of objects/subjects to define how they interact
+- #### RBAC
+	- Role-based Access Control
+	- Controlled by the system, like MAC, but utilizes a set of permissions instead of a single data label to define the permission level
+	- Power Users is a role based permission
+- #### ABAC
+	- Attribute-based access control
+	- Dynamic and context-aware using IF-THEN statements
+	- i.e. IF Jason is in HR, THEN give him access to `\\fileserver\HR`
+# 17.2 Best Practices
+- **Implicit Deny**: all access to a resource should be denied by default and only be allowed when explitcitly stated
+- **Least Privilege**: users are only given the lowest level of access needed to perform their job functions
+	- i.e. does everyone in the company need to know employee salary data?
+- **Separation of Duties**: requires more than one person to conduct a sensitive task or operation
+	- Can be implemented by a single user wit ha user and admin account
+- **Job Rotation**: Occurs when users are cycled throug hvarious jobs to elarn the overall operations better, reduce boredom, enhance skill levels, and increase security
+	- Helps mitigate identity theft, fraud, and abuse of position within a company
+# 17.3 Users and Groups
+- Computers can have multiple users and groups
+- Two ways on Windows:
+	- Right-click on an empty area in the Users folder of the ADUC and select "Create New User"
+	- Create a new user within the Organizational Unit within Active Directory
+- **User rights**: permissions assigned to a given user
+- **Groups**: collection of users based on common attributes
+- Permissions in Windows specifically (these are generally found across other OSs, as well, but)
+	- Full Control
+	- Modify
+	- Read / Execute
+	- List Folder Contents
+	- Read
+	- Write
+- Permissions are broken down into Read/Write/Execute inside Linux
+- Assigned to Owners (U), Gruops (G), and All Users (O or A)
+- **chmod**: program in Linux that is used to change the permissions or rights of a file or folder using a shorthand number system
+	- **R (Read)**: 4, **W (Write)**: 2, **X (Execute)**: 1
+	- i.e. `chmod 760 filename`: 7 = Owner can RWX, 6 = Group can RW, 0 = All Users: No access
+	- `777` allows everyone to RWX
+- **Privilege Creep**: occurs when a user gets additional permission over time as they rotate through different positions
+	- Violates least privilege
+- **User Access Recertification**: process where each user's rights and permissions are revalidated to ensure that they're correct
+	- i.e. Hired, Fired, Promoted
+# 17.4 Permissions
+-  Inherited by default from the parent when a new folder is created
+-  Any permissions added/removed from the parent folder will pass to the child by default, too
+-  **Propagation**: occurs when permissions are passed to a subfolder from the parent through inheritance
+- Use groups for roles and do not assign users directly to a folder's permissions
+- When you copy files, then permissions are inherited from the parent folder it is copied into
+- MOVING files, instead, keep original permissions
+# 17.5 Usernames and Passwords
+- **Strong passwords**: contain uppercase/lowercase letters, numbers, special characters, and are at least 8 characters (though, 14+ is better)
+- ALWAYS require the user to change the default password when the account is created
+- Require that the password is changed frequently (every 90 days or so)
+- Always change the default admin or root password
+- Disable guest account on your systems
+- Enable CTRL+ALT+DEL for logging into the system
+- Use good, strong policies in regards to your passwords
+# 17.6 User Account Control
+- A security component in Windows that keeps every user in standard user model instead of acting like an admin user
+- Two benefits from UAC:
+	- 1: Eliminates unnecessary admin-level requests for Windows resources
+	- 2: Reduces ris kof malware using admin-level privileges to cause system issues
+- UAC can be **disabled** from the Control Panel
